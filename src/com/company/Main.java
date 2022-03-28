@@ -1,22 +1,39 @@
 package com.company;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
-        double[] skaiciai = {5.16, 8.99, -6.28, 11.04, -58.39};
+        double[] skaiciai = {5.16, 8.99, -6.28, 11.04, -58.39, 17.99, -0.97};
         spausdintiMasyvoElementus(skaiciai);
-        spausdinti("masyve yra: ", +skaiciai.length, " elementai");
+        spausdinti("masyve yra: ", + skaiciai.length, " elementai");
         int neigiamiSkaiciai = skaiciuotiNeigiamusElementus(skaiciai);
         spausdinti("masyve yra: ", neigiamiSkaiciai, " neigiami skaiciai");
         double teigiamuSkaiciuSuma = skaiciuotiTeigiamuElementuSuma(skaiciai);
         spausdinti("masyve esanciu teigiamu skaiciu suma lygi: ", teigiamuSkaiciuSuma);
         double teigiamuSkaiciuSandauga = skaiciuotiTeigiamuElementuSandauga(skaiciai);
         spausdinti("masyve esanciu teigiamu skaiciu sandauga lygi: ", teigiamuSkaiciuSandauga);
+        int teigiamuElementuSkaicius = skaiciuotiTeigiamusMasyvoElementus(skaiciai);
+        double[] teigiamiSkaiciai = gautiTeigiamusMasyvoElementus(skaiciai, teigiamuElementuSkaicius);
+        spausdinti("Naujasis teigiamu skaiciu masyvas: ", Arrays.toString(teigiamiSkaiciai));
+    }
+
+
+    /**
+     * Funkcija terminale isvedanti pranesima vartotojui
+     *
+     * @param tekstas    tekstas
+     * @param kintamasis kintamasis
+     */
+    public static void spausdinti(String tekstas, String kintamasis) {
+        System.out.println(tekstas + kintamasis);
     }
 
     /**
      * Funkcija terminale isvedanti pranesima vartotojui.
-     * @param tekstas tekstas
+     *
+     * @param tekstas    tekstas
      * @param kintamasis skaicius
      */
     public static void spausdinti(String tekstas, double kintamasis) {
@@ -25,9 +42,10 @@ public class Main {
 
     /**
      * funkcija terminale isvedanti pranesima vartotojui
-     * @param tekstas1 pirma teksto dalis
+     *
+     * @param tekstas1   pirma teksto dalis
      * @param kintamasis skaicius
-     * @param tekstas2 antra teksto dalis
+     * @param tekstas2   antra teksto dalis
      */
     public static void spausdinti(String tekstas1, int kintamasis, String tekstas2) {
         System.out.println(tekstas1 + kintamasis + tekstas2);
@@ -35,8 +53,9 @@ public class Main {
 
     /**
      * funkcija terminale isvedanti pranesima vartotojui
+     *
      * @param kintamasis1 pirmasis skaicius
-     * @param tekstas tekstas
+     * @param tekstas     tekstas
      * @param kintamasis2 antrasis skaicius
      */
     public static void spausdinti(int kintamasis1, String tekstas, double kintamasis2) {
@@ -45,6 +64,7 @@ public class Main {
 
     /**
      * Funkcija isvedanti terminale masyvo elementus
+     *
      * @param masyvas masyvas
      */
     public static void spausdintiMasyvoElementus(double[] masyvas) {
@@ -55,6 +75,7 @@ public class Main {
 
     /**
      * Funkcija suskaiciuojanti neigiamus skaicius, esancius masyve
+     *
      * @param masyvas masyvas
      * @return neigiamu elementu kiekis
      */
@@ -70,6 +91,7 @@ public class Main {
 
     /**
      * Funkcija skaiciuojanti teigiamu skaiciu, esanciu masyve, suma:
+     *
      * @param masyvas masyvas
      * @return teigiamu skaiciu, esanciu masyve, suma
      */
@@ -85,6 +107,7 @@ public class Main {
 
     /**
      * Funkcija skaiciuojanti teigiamu skaiciu, esanciu masyve, sandauga:
+     *
      * @param masyvas masyvas
      * @return teigiamu sandauga, esanciu masyve, suma
      */
@@ -96,6 +119,40 @@ public class Main {
             }
         }
         return teigiamuSkaiciuSandauga;
+    }
 
+    /**
+     * Funkcija skaiciuojanti teigiamu elementu skaiciu masyve
+     *
+     * @param masyvas masyvas
+     * @return teigiamu masyvo elementu skaicius
+     */
+    public static int skaiciuotiTeigiamusMasyvoElementus(double[] masyvas) {
+        int teigiamuElementuSkaicius = 0;
+        for (int i = 0; i < masyvas.length; i++) {
+            if (masyvas[i] > 0) {
+                teigiamuElementuSkaicius++;
+            }
+        }
+        return teigiamuElementuSkaicius;
+    }
+
+    /**
+     * Funkcija is pateikto skaiciu masyvo sukurianti teigiamu skaiciu masyva
+     *
+     * @param masyvas                  masyvas
+     * @param teigiamuElementuSkaicius teigiamu elementu skaicius
+     * @return teigiamu skaiciu masyvas
+     */
+    public static double[] gautiTeigiamusMasyvoElementus(double[] masyvas, int teigiamuElementuSkaicius) {
+        int j = 0;
+        double[] teigiamiSkaiciai = new double[teigiamuElementuSkaicius];
+        for (int i = 0; i < masyvas.length; i++) {
+            if (masyvas[i] > 0) {
+                teigiamiSkaiciai[j] = masyvas[i];
+                j++;
+            }
+        }
+        return teigiamiSkaiciai;
     }
 }
